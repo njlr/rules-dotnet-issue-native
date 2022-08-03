@@ -1,0 +1,9 @@
+source https://api.nuget.org/v3/index.json
+
+storage: none
+
+framework: net6.0, netstandard2.1
+
+nuget FSharp.Core
+nuget Microsoft.NETCore.App.Ref
+nuget MonoGame.Framework.DesktopGL 3.8.1.303
