@@ -17,10 +17,12 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
   name = "rules_dotnet",
-  remote = "https://github.com/bazelbuild/rules_dotnet",
+  # remote = "https://github.com/bazelbuild/rules_dotnet",
+  remote = "https://github.com/purkhusid/rules_dotnet",
   # branch = "next",
-  commit = "5fc875093b558a199fbe739f0717dfe09ff626e5",
-  shallow_since = "1655891408 +0000",
+  branch = "nuget-runtimes",
+  # commit = "5fc875093b558a199fbe739f0717dfe09ff626e5",
+  # shallow_since = "1655891408 +0000",
 )
 
 load(
@@ -32,6 +34,14 @@ load(
 rules_dotnet_dependencies()
 
 dotnet_register_toolchains("dotnet", "6.0.300")
+
+load("@rules_dotnet//dotnet:rules_dotnet_nuget_packages.bzl", "rules_dotnet_nuget_packages")
+
+rules_dotnet_nuget_packages()
+
+load("@rules_dotnet//dotnet:paket2bazel_dependencies.bzl", "paket2bazel_dependencies")
+
+paket2bazel_dependencies()
 
 load("//deps:paket.bzl", "paket")
 
